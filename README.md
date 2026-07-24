@@ -1,83 +1,56 @@
 <div align="center">
 
-  <img src="assets/media/logo.jpg" alt="logo" width="200" height="auto" />
-    <h1><a href="https://github.com/ScottKirvan/ScooterGitTemplate">ScottKirvan/ScooterGitTemplate</a></h1>
-  <h3>Nulla nobis dicta iste minus dolor repellendus aspernatur atque</h3>
-  
-  
-
-
+  <h1><a href="https://github.com/ScottKirvan/ReleasePleaseTest">ScottKirvan/ReleasePleaseTest</a></h1>
+  <h3>Sandbox for testing Release Please and shared GitHub Actions workflow patterns</h3>
 
 <!-- Badges -->
 <p>
-  <a href="https://github.com/ScottKirvan/ScooterGitTemplate/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/ScottKirvan/ScooterGitTemplate" alt="contributors" />
+  <a href="https://github.com/ScottKirvan/ReleasePleaseTest/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/ScottKirvan/ReleasePleaseTest" alt="contributors" />
   </a>
   <a href="">
-    <img src="https://img.shields.io/github/last-commit/ScottKirvan/ScooterGitTemplate" alt="last update" />
+    <img src="https://img.shields.io/github/last-commit/ScottKirvan/ReleasePleaseTest" alt="last update" />
   </a>
-  <a href="https://github.com/ScottKirvan/ScooterGitTemplate/network/members">
-    <img src="https://img.shields.io/github/forks/ScottKirvan/ScooterGitTemplate" alt="forks" />
+  <a href="https://github.com/ScottKirvan/ReleasePleaseTest/issues/">
+    <img src="https://img.shields.io/github/issues/ScottKirvan/ReleasePleaseTest" alt="open issues" />
   </a>
-  <a href="https://github.com/ScottKirvan/ScooterGitTemplate/stargazers">
-    <img src="https://img.shields.io/github/stars/ScottKirvan/ScooterGitTemplate" alt="stars" />
+  <a href="https://github.com/ScottKirvan/ReleasePleaseTest/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/ScottKirvan/ReleasePleaseTest.svg" alt="license" />
   </a>
-  <a href="https://github.com/ScottKirvan/ScooterGitTemplate/issues/">
-    <img src="https://img.shields.io/github/issues/ScottKirvan/ScooterGitTemplate" alt="open issues" />
-  </a>
-  <a href="https://github.com/ScottKirvan/ScooterGitTemplate/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/ScottKirvan/ScooterGitTemplate.svg" alt="license" />
-  </a>
-  <a href="https://discord.gg/gQH4mXWQRT">
-    <!--<img src="https://img.shields.io/discord/704680098577514527?style=flat-square&label=%F0%9F%92%AC%20discord&color=00ACD7">-->
+  <a href="https://discord.gg/TN6XJSNK5Y">
     <img src="https://img.shields.io/discord/1052011377415438346?style=flat-square&label=discord&color=00ACD7">
   </a>
 </p>
-   
+
 <h4>
-    <a href="https://github.com/ScottKirvan/ScooterGitTemplate/">View Demo</a>
+    <a href="https://github.com/ScottKirvan/ReleasePleaseTest/issues/">Report Bug</a>
   <span> · </span>
-    <a href="https://github.com/ScottKirvan/ScooterGitTemplate">Documentation</a>
-  <span> · </span>
-    <a href="https://github.com/ScottKirvan/ScooterGitTemplate/issues/">Report Bug</a>
-  <span> · </span>
-    <a href="https://github.com/ScottKirvan/ScooterGitTemplate/issues/">Request Feature</a>
+    <a href="https://github.com/ScottKirvan/ReleasePleaseTest/issues/">Request Feature</a>
   </h4>
 </div>
 
-**ScooterGitTemplate** is voluptatibus magni nemo est. Nulla nobis dicta iste minus dolor repellendus aspernatur atque. Earum expedita aut inventore tempora fugiat deleniti. Molestias minima nam expedita beatae totam ipsa reprehenderit animi. Occaecati quibusdam beatae ducimus voluptate ut doloribus vitae amet. Quia ut ut voluptate dignissimos adipisci dolorum rem.
+**ReleasePleaseTest** is a sandbox repo for iterating on release automation across the BojuStudio project ecosystem. It's used to test and refine Release Please configuration, AI-generated release notes, and Discord notification workflows before rolling changes out to production repos.
 
-Branches
---------
-`main` is the [deployed](https://www.scottkirvan.com/ScooterGitTemplate/) branch.  The repo doesn't currently contain any other historic or dev branches.
+Workflows
+---------
+Local copies of shared workflows live in `.github/workflows/` for in-place experimentation:
 
-Repo Layout
------------
-```
-ScooterGitTemplate
-├───assets
-│   ├───css
-│   └───media
-├───notes
-└───_layouts
-```
-This layout and it's associated `_layouts` and `css` folders help support the look of your repo in GitHub Pages (Deployment Workflow). You can see an example of this repo processed using Jekyl and published at [ScottKirvan.com](https://www.scottkirvan.com/ScooterGitTemplate/).  You have to enable **Pages** in your repo's settings.  Details [here](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll).
+- `local-release-notes.yml` — sandbox version of the AI release notes rewriter (narrative prose + What Changed bullets)
+- `local-discord-notify.yml` — sandbox version of the Discord release notification (posts only the What Changed bullet list)
+- `release.yml` — ties it all together: Release Please → AI notes → Discord notify
 
-The css file creates a page that is styled similar to GitHub's [Dark High Contrast](https://github.blog/changelog/2021-08-25-dark-high-contrast-theme-ga/) theme.
+Shared production workflows live in [ScottKirvan/.github](https://github.com/ScottKirvan/.github).
 
 Contributions / Contact
 -----------------------
-- Please [file an issue](https://github.com/ScottKirvan/ScooterGitTemplate/issues/), or grab a fork, hack away, and submit some [pull requests](https://github.com/ScottKirvan/ScooterGitTemplate/pulls).
+- [File an issue](https://github.com/ScottKirvan/ReleasePleaseTest/issues/) or submit a [pull request](https://github.com/ScottKirvan/ReleasePleaseTest/pulls)
 - Contact me at [linkedin.com/in/scottkirvan/](https://www.linkedin.com/in/scottkirvan/)
-- You can also contact me at my [discord](https://discord.gg/TN6XJSNK5Y) server, I'm cptvideo.
+- Find me on [Discord](https://discord.gg/TN6XJSNK5Y) as cptvideo
 
 Credits
 -------
-**Copyright (c) (2024):** [Scott Kirvan](https://github.com/ScottKirvan)  - All rights reserved   
-*ScooterGitTemplate is licensed under the [MIT License](LICENSE.md).*  
+**Copyright (c) 2024:** [Scott Kirvan](https://github.com/ScottKirvan) — All rights reserved  
+*ReleasePleaseTest is licensed under the [MIT License](LICENSE.md).*
 
-Project Link:  [ScooterGitTemplate](https://github.com/ScottKirvan/ScooterGitTemplate)  
-[CHANGELOG](notes/CHANGELOG.md)  
-[TODO](notes/TODO.md)
-
-xxsdf
+Project Link: [ReleasePleaseTest](https://github.com/ScottKirvan/ReleasePleaseTest)  
+[CHANGELOG](notes/CHANGELOG.md)
