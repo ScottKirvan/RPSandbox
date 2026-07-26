@@ -128,15 +128,6 @@ jobs:
             fi
           } > /tmp/prompt.txt
 
-          # Releases with many PRs/commits can build a prompt that exceeds the
-          # model's context window and fails the inference step outright.
-          # Cap it so we always get a response, even if it has to omit older PR bodies.
-          MAX_PROMPT_BYTES=20000
-          if [ "$(wc -c < /tmp/prompt.txt)" -gt "$MAX_PROMPT_BYTES" ]; then
-            head -c "$MAX_PROMPT_BYTES" /tmp/prompt.txt > /tmp/prompt.trimmed.txt
-            mv /tmp/prompt.trimmed.txt /tmp/prompt.txt
-          fi
-
       - name: Rewrite notes as narrative with AI
         id: ai
         uses: actions/ai-inference@v2
