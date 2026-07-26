@@ -46,12 +46,12 @@ on:
         description: Human-readable display name
         required: false
         type: string
-        default: "ReleasePleaseTest"
+        default: "RPSandbox"
       project_context:
         description: One or two sentences describing the project and its audience
         required: false
         type: string
-        default: "ReleasePleaseTest is a sandbox repo for testing shared GitHub Actions workflows and release automation patterns."
+        default: "RPSandbox is a sandbox repo for testing shared GitHub Actions workflows and release automation patterns."
       header:
         description: Optional markdown block prepended before the AI-generated notes
         required: false
