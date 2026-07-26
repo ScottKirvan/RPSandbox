@@ -52,6 +52,10 @@ jobs:
           CLEAN_NOTES=$(echo "$NOTES" | awk '/^### What Changed/{found=1} found{print} /^---$/ && found{exit}' | grep -v '^---$')
           [ -z "$CLEAN_NOTES" ] && CLEAN_NOTES="$NOTES"
 
+          # Trim trailing blank lines left over from the section extraction —
+          # otherwise the Discord embed renders with a chunk of empty space at the bottom.
+          CLEAN_NOTES=$(printf '%s' "$CLEAN_NOTES" | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba')
+
           PAYLOAD=$(jq -n \
             --arg content "$EMOJI **$PROJECT_NAME $TAG Published**" \
             --arg desc "$CLEAN_NOTES" \
