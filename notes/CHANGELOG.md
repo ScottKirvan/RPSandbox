@@ -10,6 +10,8 @@
 * truncate oversized prompt before calling GitHub Models ([9c38f08](https://github.com/ScottKirvan/RPSandbox/commit/9c38f0836ad276bde948ed2cd8263f3232102b82))
 * wait for changelog PR links before posting Discord notification ([b246d07](https://github.com/ScottKirvan/RPSandbox/commit/b246d073de2990fc2b55ae18a80f6a3722e85d5b))
 
+Includes PRs: [#54](https://github.com/ScottKirvan/RPSandbox/pull/54), [#55](https://github.com/ScottKirvan/RPSandbox/pull/55), [#56](https://github.com/ScottKirvan/RPSandbox/pull/56), [#57](https://github.com/ScottKirvan/RPSandbox/pull/57), [#58](https://github.com/ScottKirvan/RPSandbox/pull/58)
+
 ## [1.5.1](https://github.com/ScottKirvan/ReleasePleaseTest/compare/v1.5.0...v1.5.1) (2026-07-24)
 
 
