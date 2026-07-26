@@ -17,5 +17,8 @@ the actual workflow automation — edit freely, break it, revert it.
 2. Watch `release.yml` pick it up on the next push to `main` — pushes to
    other branches won't trigger it.
 3. Check the draft release PR body for the expected bump (patch/minor).
+4. If nothing shows up, confirm `release.yml`'s push trigger still
+   targets `main` — that's the most common reason a test run silently
+   does nothing.
 
 See the docs at ../notes/CHANGELOG.md for prior release history.
