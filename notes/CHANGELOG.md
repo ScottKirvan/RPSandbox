@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.5.2](https://github.com/ScottKirvan/RPSandbox/compare/v1.5.1...v1.5.2) (2026-07-26)
+
+
+### Bug Fixes
+
+* revert test-only changes to release workflow files ([5600464](https://github.com/ScottKirvan/RPSandbox/commit/56004642bd31cc42ddadebec5f30cb8d19871b46))
+* trim trailing blank lines from Discord embed description ([44115b9](https://github.com/ScottKirvan/RPSandbox/commit/44115b99e1458d7db3065394b740fa0fa50b8d97))
+* truncate oversized prompt before calling GitHub Models ([9c38f08](https://github.com/ScottKirvan/RPSandbox/commit/9c38f0836ad276bde948ed2cd8263f3232102b82))
+* wait for changelog PR links before posting Discord notification ([b246d07](https://github.com/ScottKirvan/RPSandbox/commit/b246d073de2990fc2b55ae18a80f6a3722e85d5b))
+
 ## [1.5.1](https://github.com/ScottKirvan/ReleasePleaseTest/compare/v1.5.0...v1.5.1) (2026-07-24)
 
 
