@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.6.0](https://github.com/ScottKirvan/RPSandbox/compare/v1.5.2...v1.6.0) (2026-07-27)
+
+
+### Features
+
+* add manual preview-release-notes workflow ([117a4b9](https://github.com/ScottKirvan/RPSandbox/commit/117a4b9d01c9629e5d7f9fa96ad3cbbc62137af6))
+* add pre-release staging workflow and update release workflow ([21142b4](https://github.com/ScottKirvan/RPSandbox/commit/21142b4bbcffe7daa2649ed2a1bd0bcfb4ca4890))
+* add sandbox scratch log for release-please testing ([023d1e0](https://github.com/ScottKirvan/RPSandbox/commit/023d1e0455c13fe0d7193a3bed58ebabfc3fd508))
+* restructure release notes format and decouple Discord ([501d99f](https://github.com/ScottKirvan/RPSandbox/commit/501d99f4ca1d47fe44967443523c662a5e1b44d5))
+
+
+### Bug Fixes
+
+* add troubleshooting step for a silent test run ([56fba03](https://github.com/ScottKirvan/RPSandbox/commit/56fba03cbe7b13a0ff43606258f0f7e01823c20e))
+* clarify that only pushes to main trigger the release workflow ([10ee610](https://github.com/ScottKirvan/RPSandbox/commit/10ee6106375f34fe0971dd02e9802d9b87bbd946))
+* remove PART 1/PART 2 labels from release notes prompt ([944d72a](https://github.com/ScottKirvan/RPSandbox/commit/944d72ad29d1188a70296de7863b0069d2a770dc))
+* rename 'New Features' to 'What's New' and tighten explanation rule ([d2083f8](https://github.com/ScottKirvan/RPSandbox/commit/d2083f8c044363b2424078a170ab945c56c9cc60))
+
 ## [1.5.2](https://github.com/ScottKirvan/RPSandbox/compare/v1.5.1...v1.5.2) (2026-07-26)
 
 
