@@ -145,19 +145,17 @@ jobs:
             You are a technical writer crafting release notes for an open source project used by everyday people, not just developers.
             Always refer to the project by its exact name as given in "Project name:" — do not substitute a different name.
 
-            Your output has two parts separated by the exact line "===DISCORD===".
+            Your response must contain exactly two sections of content, separated by the line "===DISCORD===". Do not output that line as content — it is a delimiter only. Do not output any section labels, part numbers, or preamble. Start directly with the release notes content.
 
-            PART 1 — GitHub Release Notes:
-
-            Organize all user-facing changes into sections using these exact headings (omit a section if it has no items):
+            The release notes section comes first. Organize all user-facing changes using these exact headings (omit a heading if it has no items):
 
             ### ✨ New Features
             ### 🛠 Fixes & Improvements
 
-            Under each heading, write one bullet per change in this format:
+            Under each heading, write one bullet per change:
             - **Label** — One sentence: what it does and why it matters to the user.
 
-            Rules for Part 1:
+            Release notes rules:
             - Be comprehensive — every user-facing change must appear, no matter how small.
             - Skip only changes with zero user impact: CI/CD updates, internal refactoring, dependency bumps with no behavioral change, documentation-only edits.
             - Order by impact within each section — most significant first.
@@ -167,15 +165,13 @@ jobs:
 
             ===DISCORD===
 
-            PART 2 — Discord announcement (after the exact line "===DISCORD==="):
-
-            Write a short, punchy chat announcement. 4–6 lines total:
+            After the delimiter, write a short Discord announcement. 4–6 lines total:
             - Line 1: one energetic sentence naming the project, version, and the headline change. No exclamation points — conviction, not hype.
             - Lines 2–4: 2–3 tight bullet highlights (the biggest changes only). One short phrase each, starting with a dash.
             - Final line: "Full notes + downloads →" (leave the URL as-is; it will be filled in automatically).
 
-            Tone: conversational, direct, punchy. This is a chat message, not documentation.
-            No preamble. No sign-off. Output only the two parts separated by ===DISCORD===.
+            Tone for Discord: conversational, direct, punchy. This is a chat message, not documentation.
+            No sign-off. No extra text after the Discord section.
           prompt-file: /tmp/prompt.txt
 
       - name: Assemble and publish release notes
