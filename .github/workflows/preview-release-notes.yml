@@ -1,0 +1,31 @@
+name: Manual — Preview Release Notes
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: Anticipated next version tag (e.g. v1.6.0) — need not exist yet
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  models: read
+
+jobs:
+  preview:
+    uses: ScottKirvan/.github/.github/workflows/reusable-preview-release-notes.yml@main
+    with:
+      tag_name: ${{ inputs.tag_name }}
+      project_name: "RPSandbox"
+      project_context: "RPSandbox is a sandbox repo for testing shared GitHub Actions workflows and release automation patterns."
+      header: |
+        ## RPSandbox
+
+        > Sandbox repo for validating shared workflow patterns across the BojuStudio ecosystem.
+
+        ---
+      footer: |
+        ---
+        🐛 [Report an Issue](https://github.com/ScottKirvan/RPSandbox/issues/new) · 💬 [Discord](https://discord.gg/TN6XJSNK5Y)
+    secrets: inherit
