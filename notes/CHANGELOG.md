@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/ScottKirvan/RPSandbox/compare/v1.6.0...v1.6.1) (2026-07-27)
+
+
+### Bug Fixes
+
+* correct hyphenation of Release-Please in README ([4ff842e](https://github.com/ScottKirvan/RPSandbox/commit/4ff842e8738756385ccf84eec6188336109b9d22))
+
 ## [1.6.0](https://github.com/ScottKirvan/RPSandbox/compare/v1.5.2...v1.6.0) (2026-07-27)
 
 
