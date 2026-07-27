@@ -1,7 +1,7 @@
 <div align="center">
 
   <h1><a href="https://github.com/ScottKirvan/RPSandbox">ScottKirvan/RPSandbox</a></h1>
-  <h3>Sandbox for testing Release Please and shared GitHub Actions workflow patterns</h3>
+  <h3>Sandbox for testing Release-Please and shared GitHub Actions workflow patterns</h3>
 
 <!-- Badges -->
 <p>
