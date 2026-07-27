@@ -35,6 +35,10 @@ on:
         required: false
         type: string
         default: openai/gpt-4o
+    outputs:
+      discord_blurb:
+        description: Compact Discord announcement generated alongside the release notes
+        value: ${{ jobs.rewrite-notes.outputs.discord_blurb }}
 
   workflow_dispatch:
     inputs:
@@ -80,6 +84,8 @@ permissions:
 jobs:
   rewrite-notes:
     runs-on: ubuntu-latest
+    outputs:
+      discord_blurb: ${{ steps.assemble.outputs.discord_blurb }}
     steps:
       - name: Fetch release notes, commit history, and PR descriptions
         env:
@@ -97,7 +103,7 @@ jobs:
             | jq -r --arg tag "$TAG" \
             '[.[] | select(.tagName != $tag)] | sort_by(.publishedAt) | reverse | .[0].tagName // ""')
 
-          # Fetch commit messages between tags (or from repo root if no previous release)
+          # Fetch commit messages between tags
           if [ -n "$PREV_TAG" ]; then
             gh api "repos/$REPO/compare/$PREV_TAG...$TAG" \
               --jq '.commits[] | "- " + (.commit.message | split("\n") | .[0])' \
@@ -128,7 +134,7 @@ jobs:
             fi
           } > /tmp/prompt.txt
 
-      - name: Rewrite notes as narrative with AI
+      - name: Rewrite notes with AI
         id: ai
         uses: actions/ai-inference@v2
         with:
@@ -136,30 +142,44 @@ jobs:
           max-completion-tokens: 2000
           temperature: 0.5
           system-prompt: |
-            You are a technical writer crafting release announcements for an open source project used by everyday people, not just developers.
+            You are a technical writer crafting release notes for an open source project used by everyday people, not just developers.
             Always refer to the project by its exact name as given in "Project name:" — do not substitute a different name.
 
-            Structure your output in two parts:
+            Your output has two parts separated by the exact line "===DISCORD===".
 
-            First, write 1–2 paragraphs of flowing prose. No bullet points or headers in this section.
-            Use one short, concise paragraph for small patches or minor fixes. Use two paragraphs when there are multiple significant changes across different areas.
-            Lead with the most significant change or the theme of the release — what does this release actually do for the user?
-            Be specific: name the features, behaviors, or bugs that matter. A reader should finish knowing exactly what changed and why it's worth the update.
-            Write plainly for a general audience — clear and direct, not dumbed down, but never assuming the reader is a developer.
-            Write with conviction; let the significance of the work come through without resorting to hype or exclamation points.
-            Do not mention documentation updates, internal refactoring, or future plans — only changes the user will notice.
-            Do not repeat the same point across paragraphs.
-            No marketing language. Do not invent anything not present in the input.
+            PART 1 — GitHub Release Notes:
 
-            Then, after the prose, add this exact heading followed by a tight bullet list for skimmers:
+            Organize all user-facing changes into sections using these exact headings (omit a section if it has no items):
 
-            ### What Changed
-            - one sentence per item, plain language, no fluff
+            ### ✨ New Features
+            ### 🛠 Fixes & Improvements
 
-            Output only these two parts — no preamble, no sign-off, no extra text.
+            Under each heading, write one bullet per change in this format:
+            - **Label** — One sentence: what it does and why it matters to the user.
+
+            Rules for Part 1:
+            - Be comprehensive — every user-facing change must appear, no matter how small.
+            - Skip only changes with zero user impact: CI/CD updates, internal refactoring, dependency bumps with no behavioral change, documentation-only edits.
+            - Order by impact within each section — most significant first.
+            - Label: 2–4 words, title case, names the change clearly.
+            - Explanation: plain language, no jargon. Say what changed AND what it means for the user.
+            - No marketing language. Do not invent anything not present in the input.
+
+            ===DISCORD===
+
+            PART 2 — Discord announcement (after the exact line "===DISCORD==="):
+
+            Write a short, punchy chat announcement. 4–6 lines total:
+            - Line 1: one energetic sentence naming the project, version, and the headline change. No exclamation points — conviction, not hype.
+            - Lines 2–4: 2–3 tight bullet highlights (the biggest changes only). One short phrase each, starting with a dash.
+            - Final line: "Full notes + downloads →" (leave the URL as-is; it will be filled in automatically).
+
+            Tone: conversational, direct, punchy. This is a chat message, not documentation.
+            No preamble. No sign-off. Output only the two parts separated by ===DISCORD===.
           prompt-file: /tmp/prompt.txt
 
       - name: Assemble and publish release notes
+        id: assemble
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ inputs.tag_name }}
@@ -169,6 +189,10 @@ jobs:
           FOOTER: ${{ inputs.footer }}
           CHANGELOG_PATH: ${{ inputs.changelog_path }}
         run: |
+          # Split AI response at ===DISCORD===
+          RELEASE_NOTES=$(printf '%s' "$AI_NOTES" | awk '/^===DISCORD===$/{exit} {print}')
+          DISCORD_BLURB=$(printf '%s' "$AI_NOTES" | awk '/^===DISCORD===/{found=1; next} found{print}')
+
           TRIMMED_FOOTER=$(printf '%s' "$FOOTER" | sed 's/[[:space:]]*$//')
           if [ -n "$CHANGELOG_PATH" ]; then
             CHANGELOG_URL="https://github.com/$REPO/blob/main/$CHANGELOG_PATH"
@@ -183,8 +207,15 @@ jobs:
 
           {
             if [ -n "$HEADER" ]; then printf '%s\n\n' "$HEADER"; fi
-            printf '%s\n' "$AI_NOTES"
+            printf '%s\n' "$RELEASE_NOTES"
             if [ -n "$FULL_FOOTER" ]; then printf '\n%s\n' "$FULL_FOOTER"; fi
           } > /tmp/release_notes.md
           gh release edit "$TAG" --repo "$REPO" --notes-file /tmp/release_notes.md
           echo "Release notes updated for $TAG"
+
+          # Export Discord blurb as step output
+          {
+            echo 'discord_blurb<<DISCORD_EOF'
+            printf '%s\n' "$DISCORD_BLURB"
+            echo 'DISCORD_EOF'
+          } >> "$GITHUB_OUTPUT"

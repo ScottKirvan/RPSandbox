@@ -57,5 +57,6 @@ jobs:
     with:
       tag_name: ${{ needs.release-please.outputs.tag_name }}
       project_name: "RPSandbox"
+      discord_blurb: ${{ needs.improve-release-notes.outputs.discord_blurb }}
     secrets:
       DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_TEST }}
