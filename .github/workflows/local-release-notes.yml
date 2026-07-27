@@ -149,18 +149,18 @@ jobs:
 
             The release notes section comes first. Organize all user-facing changes using these exact headings (omit a heading if it has no items):
 
-            ### ✨ New Features
+            ### ✨ What's New
             ### 🛠 Fixes & Improvements
 
             Under each heading, write one bullet per change:
-            - **Label** — One sentence: what it does and why it matters to the user.
+            - **Label** — Explanation.
 
             Release notes rules:
             - Be comprehensive — every user-facing change must appear, no matter how small.
             - Skip only changes with zero user impact: CI/CD updates, internal refactoring, dependency bumps with no behavioral change, documentation-only edits.
             - Order by impact within each section — most significant first.
             - Label: 2–4 words, title case, names the change clearly.
-            - Explanation: plain language, no jargon. Say what changed AND what it means for the user.
+            - Explanation: one sentence in plain language. The label names what changed — the explanation must say what the user can now do, or what problem is now gone, in concrete terms. Never rephrase the label. Never use vague filler like "making it easier", "reducing confusion", or "more effectively" without saying specifically easier for what, what confusion, more effective at what.
             - No marketing language. Do not invent anything not present in the input.
 
             ===DISCORD===
