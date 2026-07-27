@@ -29,62 +29,49 @@ jobs:
     if: ${{ needs.release-please.outputs.release_created }}
     runs-on: ubuntu-latest
     outputs:
-      used_staging: ${{ steps.check.outputs.used_staging }}
+      used_staging: ${{ steps.apply.outputs.used_staging }}
       discord_blurb: ${{ steps.apply.outputs.discord_blurb }}
     steps:
-      - name: Check for staging branch
-        id: check
+      - name: Apply staged notes and clean up
+        id: apply
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ needs.release-please.outputs.tag_name }}
           REPO: ${{ github.repository }}
         run: |
           STAGING_BRANCH="pre-release-staging/$TAG"
+
+          # Check for staging branch via API (no checkout — avoids git glob refspec failures on branch names with slashes)
           EXISTS=$(gh api "repos/$REPO/branches/$STAGING_BRANCH" --jq '.name' 2>/dev/null || echo "")
-          if [ -n "$EXISTS" ]; then
-            echo "used_staging=true" >> "$GITHUB_OUTPUT"
-            echo "Found staging branch: $STAGING_BRANCH"
-          else
+
+          if [ -z "$EXISTS" ]; then
             echo "used_staging=false" >> "$GITHUB_OUTPUT"
             echo "No staging branch found for $TAG — will fall back to AI generation"
+            exit 0
           fi
 
-      - uses: actions/checkout@v4
-        if: steps.check.outputs.used_staging == 'true'
-        with:
-          ref: pre-release-staging/${{ needs.release-please.outputs.tag_name }}
-          token: ${{ github.token }}
+          echo "Found staging branch: $STAGING_BRANCH"
 
-      - name: Apply staged notes and clean up
-        id: apply
-        if: steps.check.outputs.used_staging == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          TAG: ${{ needs.release-please.outputs.tag_name }}
-          REPO: ${{ github.repository }}
-        run: |
-          RELEASE_NOTES_FILE=".github/tmp/pre-release-staging/release-notes.md"
-          DISCORD_BLURB_FILE=".github/tmp/pre-release-staging/discord-blurb.txt"
+          # Read files via API
+          NOTES=$(gh api "repos/$REPO/contents/.github/tmp/pre-release-staging/release-notes.md?ref=$STAGING_BRANCH" \
+            --jq '.content' | base64 -d)
+          BLURB=$(gh api "repos/$REPO/contents/.github/tmp/pre-release-staging/discord-blurb.txt?ref=$STAGING_BRANCH" \
+            --jq '.content' | base64 -d 2>/dev/null || echo "")
 
-          if [ ! -f "$RELEASE_NOTES_FILE" ]; then
-            echo "::error::Staging branch exists but release-notes.md not found. Aborting."
-            exit 1
-          fi
-
-          # Apply the staged body to the GitHub release
-          gh release edit "$TAG" --repo "$REPO" --notes-file "$RELEASE_NOTES_FILE"
+          # Apply staged body to the GitHub release
+          printf '%s' "$NOTES" > /tmp/staged-release-notes.md
+          gh release edit "$TAG" --repo "$REPO" --notes-file /tmp/staged-release-notes.md
           echo "Applied staged release notes to $TAG"
 
-          # Read discord blurb for downstream jobs
-          BLURB=$(cat "$DISCORD_BLURB_FILE" 2>/dev/null || echo "")
+          # Delete staging branch via API
+          gh api "repos/$REPO/git/refs/heads/$STAGING_BRANCH" --method DELETE || true
+          echo "Deleted staging branch: $STAGING_BRANCH"
+
+          echo "used_staging=true" >> "$GITHUB_OUTPUT"
           { echo 'discord_blurb<<BLURB_EOF'
             printf '%s\n' "$BLURB"
             echo 'BLURB_EOF'
           } >> "$GITHUB_OUTPUT"
-
-          # Delete the staging branch
-          git push origin --delete "pre-release-staging/$TAG" || true
-          echo "Deleted staging branch: pre-release-staging/$TAG"
 
   improve-release-notes:
     needs: [release-please, apply-staged-notes]
