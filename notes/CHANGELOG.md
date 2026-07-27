@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.2](https://github.com/ScottKirvan/RPSandbox/compare/v1.6.1...v1.6.2) (2026-07-27)
+
+
+### Bug Fixes
+
+* check staging branch existence via exit code not jq output ([e8acd8b](https://github.com/ScottKirvan/RPSandbox/commit/e8acd8bb8a3b01163a20f875997153142cccaf18))
+* read staging files via API instead of git checkout ([9f73b6f](https://github.com/ScottKirvan/RPSandbox/commit/9f73b6ff710d25da60872ac92c97d7c13539d78f))
+
 ## [1.6.1](https://github.com/ScottKirvan/RPSandbox/compare/v1.6.0...v1.6.1) (2026-07-27)
 
 
