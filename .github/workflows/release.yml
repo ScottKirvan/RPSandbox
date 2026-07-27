@@ -41,10 +41,8 @@ jobs:
         run: |
           STAGING_BRANCH="pre-release-staging/$TAG"
 
-          # Check for staging branch via API (no checkout — avoids git glob refspec failures on branch names with slashes)
-          EXISTS=$(gh api "repos/$REPO/branches/$STAGING_BRANCH" --jq '.name' 2>/dev/null || echo "")
-
-          if [ -z "$EXISTS" ]; then
+          # Check for staging branch — use exit code only; --jq on a 404 body outputs "null" which looks truthy
+          if ! gh api "repos/$REPO/branches/$STAGING_BRANCH" > /dev/null 2>&1; then
             echo "used_staging=false" >> "$GITHUB_OUTPUT"
             echo "No staging branch found for $TAG — will fall back to AI generation"
             exit 0
