@@ -7,6 +7,8 @@
 
 * correct hyphenation of Release-Please in README ([4ff842e](https://github.com/ScottKirvan/RPSandbox/commit/4ff842e8738756385ccf84eec6188336109b9d22))
 
+Includes PRs: [#66](https://github.com/ScottKirvan/RPSandbox/pull/66), [#67](https://github.com/ScottKirvan/RPSandbox/pull/67)
+
 ## [1.6.0](https://github.com/ScottKirvan/RPSandbox/compare/v1.5.2...v1.6.0) (2026-07-27)
 
 
