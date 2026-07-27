@@ -11,6 +11,11 @@ on:
         description: Human-readable project name for the Discord message
         required: true
         type: string
+      discord_blurb:
+        description: Pre-generated compact Discord announcement from the release notes workflow; if provided, used directly instead of extracting from the release body
+        required: false
+        type: string
+        default: ""
       color:
         description: Discord embed color as a decimal integer
         required: false
@@ -38,19 +43,23 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           TAG: ${{ inputs.tag_name }}
           PROJECT_NAME: ${{ inputs.project_name }}
+          DISCORD_BLURB: ${{ inputs.discord_blurb }}
           COLOR: ${{ inputs.color }}
           EMOJI: ${{ inputs.emoji }}
           REPO: ${{ github.repository }}
         run: |
           RELEASE_URL="https://github.com/$REPO/releases/tag/$TAG"
 
-          # Read the (already AI-improved) release notes from the GitHub API
-          NOTES=$(gh release view "$TAG" --repo "$REPO" --json body -q '.body')
-
-          # Extract just the ### What Changed bullet list for Discord — keeps the message brief.
-          # Falls back to full body if the section isn't found.
-          CLEAN_NOTES=$(echo "$NOTES" | awk '/^### What Changed/{found=1} found{print} /^---$/ && found{exit}' | grep -v '^---$')
-          [ -z "$CLEAN_NOTES" ] && CLEAN_NOTES="$NOTES"
+          if [ -n "$DISCORD_BLURB" ]; then
+            # Use the pre-generated blurb; fill in the release URL placeholder
+            CLEAN_NOTES=$(printf '%s' "$DISCORD_BLURB" \
+              | sed "s|Full notes + downloads →|Full notes + downloads → $RELEASE_URL|")
+          else
+            # Fallback: extract bullet content from the release body
+            NOTES=$(gh release view "$TAG" --repo "$REPO" --json body -q '.body')
+            CLEAN_NOTES=$(echo "$NOTES" | awk '/^### /{found=1} found && /^- /{print} /^---$/ && found{exit}')
+            [ -z "$CLEAN_NOTES" ] && CLEAN_NOTES="$NOTES"
+          fi
 
           PAYLOAD=$(jq -n \
             --arg content "$EMOJI **$PROJECT_NAME $TAG Published**" \
