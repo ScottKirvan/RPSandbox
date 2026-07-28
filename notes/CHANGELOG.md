@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.3](https://github.com/ScottKirvan/RPSandbox/compare/v1.6.2...v1.6.3) (2026-07-28)
+
+
+### Bug Fixes
+
+* remove dead update-version-header workflow ([51bb6f2](https://github.com/ScottKirvan/RPSandbox/commit/51bb6f29eb552ffffd53ed01c0621c8e8c3e2f1a))
+
 ## [1.6.2](https://github.com/ScottKirvan/RPSandbox/compare/v1.6.1...v1.6.2) (2026-07-27)
 
 
