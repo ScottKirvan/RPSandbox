@@ -1,0 +1,4 @@
+What's Fixed:
+- Removed outdated background update workflows that are no longer needed.
+- Removed superseded preview generation workflows to streamline project automation.
+- Cleaned up internal documentation and updated release history references.
