@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.6.3](https://github.com/ScottKirvan/RPSandbox/compare/v1.6.2...v1.6.3) (2026-08-29)
+
+
+### Bug Fixes
+
+* add changelog link to release and staging footers ([12e1d41](https://github.com/ScottKirvan/RPSandbox/commit/12e1d4146d02c401702ab5f915aade44d1f01055))
+* drop redundant 'All rights reserved' from credits ([a44d168](https://github.com/ScottKirvan/RPSandbox/commit/a44d168f2169c37f3ffccb99e2c39ec478ab2eaf))
+* remove dead update-version-header workflow ([51bb6f2](https://github.com/ScottKirvan/RPSandbox/commit/51bb6f29eb552ffffd53ed01c0621c8e8c3e2f1a))
+* remove superseded preview-release-notes workflow ([d510108](https://github.com/ScottKirvan/RPSandbox/commit/d51010803d0c0389d8c344e55f4b1ac2dc88322b))
+
 ## [1.6.2](https://github.com/ScottKirvan/RPSandbox/compare/v1.6.1...v1.6.2) (2026-07-27)
 
 
