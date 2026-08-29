@@ -49,7 +49,7 @@ Contributions / Contact
 
 Credits
 -------
-**Copyright (c) 2024:** [Scott Kirvan](https://github.com/ScottKirvan) — All rights reserved  
+**Copyright (c) 2024:** [Scott Kirvan](https://github.com/ScottKirvan)
 *RPSandbox is licensed under the [MIT License](LICENSE.md).*
 
 Project Link: [RPSandbox](https://github.com/ScottKirvan/RPSandbox)  
