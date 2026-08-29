@@ -90,6 +90,7 @@ jobs:
       footer: |
         ---
         🐛 [Report an Issue](https://github.com/ScottKirvan/RPSandbox/issues/new) · 💬 [Discord](https://discord.gg/TN6XJSNK5Y)
+      changelog_path: "notes/CHANGELOG.md"
     secrets: inherit
 
   update-changelog-prs:
