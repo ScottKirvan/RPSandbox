@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.7.0](https://github.com/ScottKirvan/RPSandbox/compare/v1.6.2...v1.7.0) (2026-09-10)
+
+
+### Features
+
+* add changelog dogfood task to TODO ([1408968](https://github.com/ScottKirvan/RPSandbox/commit/1408968b0a6f2cbdff8a845cffcc8ea9cc4677da))
+
+
+### Bug Fixes
+
+* add changelog link to release and staging footers ([12e1d41](https://github.com/ScottKirvan/RPSandbox/commit/12e1d4146d02c401702ab5f915aade44d1f01055))
+* add second-pass marker to sandbox notes ([d381cbc](https://github.com/ScottKirvan/RPSandbox/commit/d381cbc032cf3c1c54fff2a01bbc990e19953b8b))
+* add verification step to dogfood checklist ([8933436](https://github.com/ScottKirvan/RPSandbox/commit/89334368944e74a0158ffed4c79e086568d1d859))
+* drop redundant 'All rights reserved' from credits ([a44d168](https://github.com/ScottKirvan/RPSandbox/commit/a44d168f2169c37f3ffccb99e2c39ec478ab2eaf))
+* remove dead update-version-header workflow ([51bb6f2](https://github.com/ScottKirvan/RPSandbox/commit/51bb6f29eb552ffffd53ed01c0621c8e8c3e2f1a))
+* remove superseded preview-release-notes workflow ([d510108](https://github.com/ScottKirvan/RPSandbox/commit/d51010803d0c0389d8c344e55f4b1ac2dc88322b))
+* update sandbox test notes with timestamp ([b71bd00](https://github.com/ScottKirvan/RPSandbox/commit/b71bd00d6d1f31f80230610b12fea2f61379cc4a))
+
 ## [1.6.2](https://github.com/ScottKirvan/RPSandbox/compare/v1.6.1...v1.6.2) (2026-07-27)
 
 
