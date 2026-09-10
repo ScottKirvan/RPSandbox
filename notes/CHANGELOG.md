@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.1](https://github.com/ScottKirvan/RPSandbox/compare/v1.7.0...v1.7.1) (2026-09-10)
+
+
+### Bug Fixes
+
+* add ci workflow check item to sandbox TODO ([0394f8e](https://github.com/ScottKirvan/RPSandbox/commit/0394f8e5d664363bb7170420a1c82500584a9631))
+* update sandbox notes with latest test run ([ed10808](https://github.com/ScottKirvan/RPSandbox/commit/ed108089208eeeea9e2c2d87c8f5fe6b85ba398f))
+
 ## [1.7.0](https://github.com/ScottKirvan/RPSandbox/compare/v1.6.2...v1.7.0) (2026-09-10)
 
 
