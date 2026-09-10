@@ -5,7 +5,7 @@
 
 ### Features
 
-* add noise section to sandbox notes for dogfood testing ([34552dd](https://github.com/ScottKirvan/RPSandbox/commit/34552dda4e45b6c0aa3d23a85d1b5503ef286701))
+* add noise section to sandbox notes for dogfood testing ([#79](https://github.com/ScottKirvan/RPSandbox/pull/79))
 
 ## [1.7.1](https://github.com/ScottKirvan/RPSandbox/compare/v1.7.0...v1.7.1) (2026-09-10)
 
