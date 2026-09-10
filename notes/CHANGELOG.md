@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/ScottKirvan/RPSandbox/compare/v1.7.1...v1.8.0) (2026-09-10)
+
+
+### Features
+
+* add noise section to sandbox notes for dogfood testing ([34552dd](https://github.com/ScottKirvan/RPSandbox/commit/34552dda4e45b6c0aa3d23a85d1b5503ef286701))
+
 ## [1.7.1](https://github.com/ScottKirvan/RPSandbox/compare/v1.7.0...v1.7.1) (2026-09-10)
 
 
